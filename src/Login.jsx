@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,6 +17,8 @@ function Login() {
             if (result.data.success) {
                 console.log(result.data.user);
                 navigate("/home");
+            } else {
+                alert(result.data.data);
             }
           })
           .catch((err) => console.log(err));

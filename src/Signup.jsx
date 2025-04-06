@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [name, setusername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -14,6 +17,9 @@ function Signup() {
         console.log(result)
         if(result.data.success) {
           alert("Registration Successful");
+          navigate("/login");
+        } else {
+          alert(result.data.data);
         }
       })
       .catch((err) => console.log(err));
